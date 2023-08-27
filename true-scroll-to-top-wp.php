@@ -13,4 +13,29 @@
  * Update URI:          https://github.com/rezaun/
  * Text-Domain:         tstt
  */
+
+ //Including CSS
+ function tstt_enqueue_style(){
+    wp_enqueue_style('tstt-style',plugins_url('css/tstt-style.css', __FILE__));
+ }
+ add_action('wp_enqueue_scripts','tstt_enqueue_style');
+
+ //including Javascript
+ function tstt_enqueue_scripts(){
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('tstt-plugin-script', plugins_url('js/tstt.plugin.js', __FILE__), array(), '1.0.0', 'true');
+ 
+ }
+ add_action('wp_enqueue_scripts', 'tstt_enqueue_scripts');
+
+ //jQuery Plugin settings Activation
+ function tstt_scroll_script() {?>
+ <script>
+ jQuery(document).ready(function(){
+     jQuery.scrollUp();
+ })
+</script>
+ <?php
+ }
+ add_action("wp_footer", "tstt_scroll_script");
 ?>
